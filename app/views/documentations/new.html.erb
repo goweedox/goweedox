@@ -2,11 +2,7 @@
 
 <% form_for(@documentation) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
+  <%= f.hidden_field :user_id, :value=>"#{session[:user_id]}"%>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
