@@ -9,8 +9,7 @@ module MigrationHelpers
 			FOR EACH ROW BEGIN
 				SELECT
 					RAISE(ABORT, "constraint violation: #{constraint_name}")
-				WHERE
-					(SELECT id FROM #{to_table} WHERE id = NEW.#{from_column}) IS NULL;
+				WHERE(SELECT id FROM #{to_table} WHERE id = NEW.#{from_column}) IS NULL;
 			END;
 		}
 		
@@ -20,8 +19,7 @@ module MigrationHelpers
 			FOR EACH ROW BEGIN
 				SELECT
 					RAISE(ABORT, "constraint violation: #{constraint_name}")
-				WHERE
-					(SELECT id FROM #{to_table} WHERE id = NEW.#{from_column}) IS NULL;
+				WHERE(SELECT id FROM #{to_table} WHERE id = NEW.#{from_column}) IS NULL;
 			END;
 		}
 		
@@ -31,8 +29,7 @@ module MigrationHelpers
 			FOR EACH ROW BEGIN
 				SELECT
 					RAISE(ABORT, "constraint violation: #{constraint_name}")
-				WHERE
-					(SELECT id FROM #{from_table} WHERE #{from_column} = OLD.id) IS NOT NULL;
+				WHERE(SELECT id FROM #{from_table} WHERE #{from_column} = OLD.id) IS NOT NULL;
 		END;
 		}
 	end
