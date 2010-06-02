@@ -1,0 +1,18 @@
+<p>
+  <b>User:</b>
+  <%=h @documentation.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @documentation.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @documentation.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_documentation_path(@documentation) %> |
+<%= link_to 'Back', documentations_path %>

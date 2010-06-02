@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>View Documentations </title>
+		<%= stylesheet_link_tag 'view_mode', 'scaffold', 'gowee' %>
+  	<%= javascript_include_tag "screenstepslive.js" ,"jquery.min.js" %>
+			<!--<meta  name="vs_targetSchema"  content="http://schemas.microsoft.com/intellisense/ie5">-->
+        <script  id="clientEventHandlersJS"  language="javascript">
+			function ShowWebSite(val)
+			{
+				document.all.ifrm.src=val;
+      			document.all.ifrm.style.visibility="visible";
+			}
+
+			function Button1_onclick() {
+				var v = document.all("txtWebSite").value;
+				ShowWebSite(v);
+			}
+        </script>
+        
+        <script type="text/javascript" charset="utf-8">
+				ScreenStepsLiveSearchOptions = {
+					domain: "caresharing.screenstepslive.com",
+					space: "helpdes",
+					update_element: "search_results",
+					username: "codrschool",
+					password: "codrschool",
+					use_ssl: false
+				}
+	
+				jQuery.noConflict();
+				jQuery(document).ready(function($) {
+					jQuery('#screenstepslive-search').submit(function(e){
+						//alert("sud");
+						e.preventDefault();
+						search_string = jQuery('#screenstepslive-search input#screenstepslive-search-field').val();
+						SearchScreenStepsLiveSpace(search_string);
+					})
+				});
+    	</script>
+	</head>
+	
+	<body>
+		<%= yield %>
+	</body>
+</html>

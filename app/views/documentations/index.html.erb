@@ -1,0 +1,24 @@
+<h1>Listing documentations</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+
+<% for documentation in @documentations %>
+  <tr>
+    <td><%=h documentation.user_id %></td>
+    <td><%=h documentation.title %></td>
+    <td><%=h documentation.description %></td>
+    <td><%= link_to 'Show', documentation %></td>
+    <td><%= link_to 'Edit', edit_documentation_path(documentation) %></td>
+    <td><%= link_to 'Destroy', documentation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New documentation', new_documentation_path %>
