@@ -1,24 +1,27 @@
-<h1>Listing documentations</h1>
+<div id="user-list">
+<h2>Listing Documentations</h2>
 
 <table>
-  <tr>
-    <th>User</th>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
+<% @documentations.each do |documentation| %>
+	<tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
 
-<% for documentation in @documentations %>
-  <tr>
-    <td><%=h documentation.user_id %></td>
-    <td><%=h documentation.title %></td>
-    <td><%=h documentation.description %></td>
-    <td><%= link_to 'Show', documentation %></td>
-    <td><%= link_to 'Edit', edit_documentation_path(documentation) %></td>
-    <td><%= link_to 'Destroy', documentation, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<td class="list-names">
+		<dl>
+			<dt><%=h documentation.title %></dt>
+			<dd><%=h truncate(documentation.description.gsub(/<.*?>/,''), :length => 80) %></dd>
+		</dl>
+	</td>
+
+	<td class="list-actions">
+		<%= link_to 'Show', documentation %>
+   	<%= link_to 'Edit', edit_documentation_path(documentation) %>
+   	<%= link_to 'Destroy', documentation, :confirm => 'Are you sure?', :method => :delete %></td>
+	</td>
+	
+	</tr>
 <% end %>
 </table>
+</div>
+<br/>
 
-<br />
-
-<%= link_to 'New documentation', new_documentation_path %>
+<%= button_to 'New documentation', new_documentation_path %>
