@@ -15,8 +15,8 @@ class AdminController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:user_id])		
-    @documentations = Documentation.find(:all)
+		@current = User.find(session[:user_id])
+		@documentations = Documentation.find(:all)
   end
 
   def show_users

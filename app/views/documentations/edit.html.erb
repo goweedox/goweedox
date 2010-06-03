@@ -1,12 +1,6 @@
 <h1>Editing documentation</h1>
-
 <% form_for(@documentation) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -17,8 +11,6 @@
   </p>
   <p>
     <%= f.submit "Update" %>
+		<%= link_to 'Back', :controller => 'documentations', :action => "#{@documentation.id}" %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @documentation %> |
-<%= link_to 'Back', documentations_path %>

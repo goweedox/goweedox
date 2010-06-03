@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  # GET /users/new
+	# GET /users/new
   # GET /users/new.xml
   def signup
     @user = User.new

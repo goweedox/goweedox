@@ -1,18 +1,17 @@
+<% @creator = User.find(@documentation.user_id) %>
+
 <p>
-  <b>User:</b>
-  <%=h @documentation.user_id %>
+	<h3><%=h @documentation.title %></h3>
 </p>
 
 <p>
-  <b>Title:</b>
-  <%=h @documentation.title %>
+	<b>Created by:</b>
+	<%=h @creator.name %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%=h @documentation.description %>
+	<b>Description</b><br/>
+	<%=h @documentation.description %>
 </p>
 
-
-<%= link_to 'Edit', edit_documentation_path(@documentation) %> |
-<%= link_to 'Back', documentations_path %>
+<%= link_to 'Edit', edit_documentation_path(@documentation) %>
