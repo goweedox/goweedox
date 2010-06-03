@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-	  # GET /users/new
+  # GET /users/new
   # GET /users/new.xml
   def signup
     @user = User.new
@@ -16,12 +16,9 @@ class WelcomeController < ApplicationController
     end  
     if request.post?
       user = User.authenticate(params[:name], params[:password])   
-      if user &&  (user.name == 'edsonpaul' || user.name =='rj' || user.name =='wella' || user.name =='elodez'|| user.name =='jose' || user.name =='harmy')
+      if user
         session[:user_id] = user.id
         redirect_to(:controller => 'admin', :action => "index")
-      elsif user
-	session[:user_id] = user.id
-        redirect_to(:controller => "limited", :action => "index")
       else
         flash.now[:notice] = "Invalid user/password combination!"
       end
@@ -29,6 +26,7 @@ class WelcomeController < ApplicationController
   end
   
   def index
+    flash.now[:notice] = "Please click sign-up to create another account if you can't login. Sorry for the inconvenience. Thanks."
     if session[:user_id] 
       redirect_to(:controller => "admin", :action => "index")
     end
