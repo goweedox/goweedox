@@ -1,19 +1,31 @@
-<h2>Welcome Administrator!</h2>
+<h2><%=h @user.name %></h2>
+Welcome to your account! <br /><br />
 
-It's <%= Time.now %>
+<% flag = false %>
 
 <div id="tabs">
-	<ul>
-		<li><a href="#tabs-1">My Dox</a></li>
-		<li><a href="#tabs-2">Available Dox</a></li>
-	</ul>
-	<div id="tabs-1">
-		<%= button_to 'Add a Dox', new_documentation_path%>
-		
-		<p> blah blah blah </p>		
-	</div>
+  <ul>
+    <li><a href="#tabs-1">My Dox</a></li>
+    <li><a href="#tabs-2">Available Dox</a></li>
+  </ul>
+  <div id="tabs-1">
+    <% @documentations.each do |documentation| %>
+      <% if (session[:user_id] == documentation.user_id) %>
+        <li><b><dt><%= link_to "#{documentation.title}", documentation %></dt></b></li>
+        <dd><%=h documentation.description %></dd><br/>
+        <% flag = true %>
+      <% end %>
+    <% end %>
+
+    <% if flag != true %>
+      <b>You don't have any Dox yet!</b>
+    <% end %>
+
+    <br /><br />
+    <%= link_to 'New Dox', new_documentation_path%>		
+  </div>
 	
-	<div id="tabs-2">
-		<%= button_to 'View Doxes', :controller => 'documentations', :action => 'index'%>
-	</div>
+  <div id="tabs-2">
+    <%= link_to 'View Doxes', :controller => 'documentations', :action => 'index'%>
+  </div>
 </div>
