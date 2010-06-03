@@ -15,7 +15,8 @@ class AdminController < ApplicationController
   end
 
   def index
-    #@users = User.find(params[:id])
+    @user = User.find(session[:user_id])		
+    @documentations = Documentation.find(:all)
   end
 
   def show_users
