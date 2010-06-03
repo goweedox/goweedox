@@ -1,16 +1,14 @@
 class DocumentationsController < ApplicationController
-	layout "admin"
-	before_filter :authorize, :except => :login
+  before_filter :authorize, :except => :login
 
   # GET /documentations
   # GET /documentations.xml
   def index
-		@documentations = Documentation.find(:all)
-
-		respond_to do |format|
-		  format.html # index.html.erb
-		  format.xml  { render :xml => @documentations }
-		end
+    @documentations = Documentation.find(:all)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @documentations }
+    end
   end
 
   # GET /documentations/1
@@ -27,12 +25,12 @@ class DocumentationsController < ApplicationController
   # GET /documentations/new
   # GET /documentations/new.xml
   def new
-		@documentation = Documentation.new
+    @documentation = Documentation.new
 
-		respond_to do |format|
-		  format.html # new.html.erb
-		  format.xml  { render :xml => @documentation }
-		end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @documentation }
+    end
   end
 
   # GET /documentations/1/edit
