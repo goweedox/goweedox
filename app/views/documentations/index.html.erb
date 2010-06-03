@@ -1,26 +1,24 @@
 <div id="user-list">
 <h2>Listing Documentations</h2>
 
-<table>
-<% @documentations.each do |documentation| %>
-	<tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
-
-	<td class="list-names">
-		<dl>
-			<dt><%=h documentation.title %></dt>
-			<dd><%=h truncate(documentation.description.gsub(/<.*?>/,''), :length => 80) %></dd>
-		</dl>
+  <table>
+    <% @documentations.each do |documentation| %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td class="list-names">
+	  <dl>
+	    <dt><%=h documentation.title %></dt>
+	    <dd><%=h truncate(documentation.description.gsub(/<.*?>/,''), :length => 80) %></dd>
+	  </dl>
 	</td>
 
 	<td class="list-actions">
-		<%= link_to 'Show', documentation %>
-   	<%= link_to 'Edit', edit_documentation_path(documentation) %>
-   	<%= link_to 'Destroy', documentation, :confirm => 'Are you sure?', :method => :delete %></td>
-	</td>
-	
-	</tr>
-<% end %>
-</table>
+	  <%= link_to 'Show', documentation %>
+   	  <%= link_to 'Edit', edit_documentation_path(documentation) %>
+   	  <%= link_to 'Destroy', documentation, :confirm => 'Are you sure?', :method => :delete %></td>
+	</td>	
+      </tr>
+    <% end %>
+  </table>
 </div>
 <br/>
 
