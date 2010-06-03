@@ -9,6 +9,15 @@ class UsersController < ApplicationController
       redirect_to(:controller => "welcome", :action => "index")
     end
   end
+  
+  def new
+    @user = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
 
   # GET /users/1
   # GET /users/1.xml
@@ -50,9 +59,11 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    current_user = session[:user_id]
+    @current = User.find(current_user)
     @user = User.find(params[:id])
     respond_to do |format|
-      if @user.id != 17
+      if @current.name != 'admin'
         flash[:notice] = "You are not allowed to update."
         format.html { redirect_to(:controller => 'admin', :action => 'show_users') }
       elsif @user.update_attributes(params[:user])
@@ -69,8 +80,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+    current_user= session[:user_id]
+    @current = User.find(current_user)
+
     @user = User.find(params[:id])
-    if @user.id != 17
+    if @current.name != 'admin'
       flash[:notice] = "You are not allowed to delete."
     else
       @user.destroy
